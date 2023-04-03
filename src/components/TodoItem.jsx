@@ -1,11 +1,16 @@
 import { useState , useEffect } from 'react';
 const TodoItem = ({ itemProp, setTodos }) => {
+    
+    const handleChange = (id) => {
+        console.log('clicked', id);
+      };
+
     return (
       <li>
         <input
           type="checkbox"
           checked={itemProp.completed}
-          onChange={() => console.log('clicked')}
+          onChange={() => handleChange(itemProp.id)}
         />
         {itemProp.title}
       </li>
