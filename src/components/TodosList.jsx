@@ -1,12 +1,17 @@
 import { useState , useEffect } from 'react';
-const TodosList = ({ todosProps, setTodos }) => {
+const TodosList = ({ todosProps, handleChange }) => {
     return (
       <ul>
         {todosProps.map((todo) => (
-          <TodoItem key={todo.id} itemProp={todo} setTodos={setTodos} />
+          <TodoItem
+            key={todo.id}
+            itemProp={todo}
+            handleChange={handleChange}
+          />
         ))}
       </ul>
     );
   };
   export default TodosList;
+  
   
