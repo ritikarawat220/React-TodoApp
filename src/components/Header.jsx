@@ -1,3 +1,4 @@
+import styles from "@/styles/Header.module.css";
 const Header = () => {
     const headerStyle = {
         padding: '20px 0',
@@ -6,7 +7,7 @@ const Header = () => {
         textAlign: 'center',
       };
       return (
-        <header style={headerStyle}>
+        <header style={headerStyle} className={styles.header}>
         style={{
           padding: '20px 0',
           lineHeight: '1.5em',
