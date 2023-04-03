@@ -31,10 +31,15 @@ const TodosLogic = () => {
       })
     );
   };
+  const delTodo = (id) => {
+    console.log('deleted', id);
+  };
   return (
     <div>
       <InputTodo />
-      <TodosList todosProps={todos} handleChange={handleChange} />
+      <TodosList todosProps={todos} handleChange={handleChange} 
+       delTodo={delTodo}
+       />
     </div>
   );
 };
