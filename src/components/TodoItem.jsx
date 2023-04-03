@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from '@/styles/TodoItem.module.css';
 
-const TodoItem = ({ itemProp, handleChange, delTodo }) => {
+const TodoItem = ({ itemProp, handleChange, delTodo, setUpdate }) => {
     const [editing, setEditing] = useState(false);
     const handleEditing = () => {
         setEditing(true);
@@ -49,7 +49,7 @@ const TodoItem = ({ itemProp, handleChange, delTodo }) => {
         <input
           type="checkbox"
           checked={itemProp.completed}
-          onChange={(e) => console.log(e.target.value, itemProp.id)}
+          onChange={(e) => setUpdate(e.target.value, itemProp.id)}
         />
          <button onClick={handleEditing}>Edit</button>
         <button onClick={() => delTodo(itemProp.id)}>Delete</button>
