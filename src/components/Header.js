@@ -1,23 +1,6 @@
-import styles from '../styles/Header.module.css';
+import React from 'react';
 
-const Header = () => {
-  const headerStyle = {
-    padding: '20px 0',
-    lineHeight: '1.5em',
-    color: '#aeadad',
-    textAlign: 'center',
-  };
-  return (
-    <header style={headerStyle} className={styles.header}>
-      style=
-      {{
-        padding: '20px 0',
-        lineHeight: '1.5em',
-        color: '#aeadad',
-        textAlign: 'center',
-      }}
-      {/* ... */}
-    </header>
-  );
-};
+const Header = () => (
+  <h1>todos</h1>
+);
 export default Header;

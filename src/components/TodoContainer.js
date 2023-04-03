@@ -1,77 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import React, { useState } from 'react';
 import Header from './Header';
 import InputTodo from './InputTodo';
-import TodoList from './TodoList';
-import Navbar from './Navbar';
-
-const getInitialTodos = () => {
-  // getting stored items
-  const temp = localStorage.getItem('todos');
-  const savedTodos = JSON.parse(temp);
-  return savedTodos || [];
-};
+import TodosList from './TodoList';
 
 const TodoContainer = () => {
-  const [todos, setTodos] = useState(getInitialTodos());
+  const [todos, setTodos] = useState([]);
 
-  useEffect(() => {
-    // storing todos items
-    const temp = JSON.stringify(todos);
-    localStorage.setItem('todos', temp);
-  }, [todos]);
-
-  const handleChange = (id) => {
-    setTodos((prevState) => prevState.map((todo) => {
-      if (todo.id === id) {
-        return {
-          ...todo,
-          completed: !todo.completed,
-        };
-      }
-      return todo;
-    }));
-  };
-
-  const delTodo = (id) => {
-    setTodos([
-      ...todos.filter((todo) => todo.id !== id),
-    ]);
-  };
-
-  const addTodoItem = (title) => {
+  const addTodo = (title) => {
     const newTodo = {
-      id: uuidv4(),
+      id: todos.length,
       title,
       completed: false,
     };
     setTodos([...todos, newTodo]);
   };
 
-  const setUpdate = (updatedTitle, id) => {
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id === id) {
-          const auxiliarTodo = todo;
-          auxiliarTodo.title = updatedTitle;
-        }
-        return todo;
-      }),
-    );
+  const deleteTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
+  const checkTodo = (id) => {
+    setTodos((prevTodos) => prevTodos.map((todo) => {
+      if (todo.id === id) {
+        return {
+          ...todo, completed: !todo.completed,
+        };
+      }
+      return todo;
+    }));
   };
 
   return (
-    <>
-      <Navbar />
+    <div>
       <Header />
-      <InputTodo addTodoProps={addTodoItem} />
-      <TodoList
-        todos={todos}
-        handleChangeProps={handleChange}
-        deleteTodoProps={delTodo}
-        setUpdate={setUpdate}
-      />
-    </>
+      <InputTodo addTodo={addTodo} />
+      <TodosList todos={todos} deleteTodo={deleteTodo} checkTodo={checkTodo} />
+    </div>
   );
 };
 
