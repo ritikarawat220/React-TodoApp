@@ -1,5 +1,5 @@
 import { useState , useEffect } from 'react';
-const TodoItem = ({ itemProp, handleChange }) => {
+const TodoItem = ({ itemProp, handleChange, delTodo }) => {
     
       const handleChange = (id) => {
         setTodos((prevState) =>
@@ -15,6 +15,14 @@ const TodoItem = ({ itemProp, handleChange }) => {
         );
       };
 
+      const delTodo = (id) => {
+        setTodos([
+          ...todos.filter((todo) => {
+            return todo.id !== id;
+          }),
+        ]);
+      };
+
     return (
       <li>
         <input
@@ -22,7 +30,7 @@ const TodoItem = ({ itemProp, handleChange }) => {
           checked={itemProp.completed}
           onChange={() => handleChange(itemProp.id)}
         />
-        <button>Delete</button>
+        <button onClick={() => delTodo(itemProp.id)}>Delete</button>
         {itemProp.title}
       </li>
     );
