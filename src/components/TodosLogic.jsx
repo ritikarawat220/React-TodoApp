@@ -1,19 +1,20 @@
 import { useState } from 'react';
-// other imported components here
+import { v4 as uuidv4 } from "uuid";
+
 const TodosLogic = () => {
   const [todos, setTodos] = useState([
     {
-      id: 1,
+        id: uuidv4(),
       title: 'Setup development environment',
       completed: true,
     },
     {
-      id: 2,
+        id: uuidv4(),
       title: 'Develop website and add content',
       completed: false,
     },
     {
-      id: 3,
+        id: uuidv4(),
       title: 'Deploy to live server',
       completed: false,
     },
@@ -34,8 +35,15 @@ const TodosLogic = () => {
   const delTodo = (id) => {
     console.log('deleted', id);
   };
+
+
   const addTodoItem = (title) => {
-    // update state with user's input
+    const newTodo = {
+        id: uuidv4(),
+      title: title,
+      completed: false,
+    };
+    setTodos([...todos, newTodo]);
   };
   return (
     <div>
