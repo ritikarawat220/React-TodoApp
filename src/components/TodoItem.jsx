@@ -6,6 +6,14 @@ const TodoItem = ({ itemProp, handleChange, delTodo }) => {
     const handleEditing = () => {
         setEditing(true);
       };
+      let viewMode = {};
+  let editMode = {};
+  if (editing) {
+    viewMode.display = 'none';
+  } else {
+    editMode.display = 'none';
+  }
+
     const completedStyle = {
         fontStyle: 'italic',
         color: '#595959',
@@ -37,11 +45,11 @@ const TodoItem = ({ itemProp, handleChange, delTodo }) => {
 
     return (
         <li className={styles.item}>
-        <div className={styles.content}>
+          <div className={styles.content} style={viewMode}>
         <input
           type="checkbox"
           checked={itemProp.completed}
-          onChange={() => handleChange(itemProp.id)}
+          onChange={(e) => console.log(e.target.value, itemProp.id)}
         />
          <button onClick={handleEditing}>Edit</button>
         <button onClick={() => delTodo(itemProp.id)}>Delete</button>
@@ -52,6 +60,7 @@ const TodoItem = ({ itemProp, handleChange, delTodo }) => {
       type="text"
       value={itemProp.title}
       className={styles.textInput}
+      style={editMode}
     />
     </li>
     );
